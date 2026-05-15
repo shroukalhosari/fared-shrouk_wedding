@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<title>Fared & Shrouk Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&family=Cairo:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    background:linear-gradient(#fff0f5,#ffffff);
+    text-align:center;
+}
+
+/* شاشة الترحيب */
+#welcome{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#fff0f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:20px;
+    transition:opacity 1s ease;
+}
+
+#welcome h1{
+    font-size:38px;
+    color:maroon;
+    font-family:'El Messiri', sans-serif;
+}
+
+/* العنوان */
+.header{
+    font-size:55px;
+    color:maroon;
+    margin-top:30px;
+    font-family:'El Messiri', sans-serif;
+}
+
+/* الكروت */
+.container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    width:250px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 10px #ddd;
+}
+
+.title{
+    color:maroon;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.date{
+    margin-top:10px;
+    font-size:18px;
+}
+
+.place{
+    margin-top:10px;
+    color:gray;
+}
+
+/* الرسائل */
+.message-box{
+    margin-top:60px;
+}
+
+input, textarea{
+    padding:10px;
+    width:300px;
+    margin:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+button{
+    padding:10px 20px;
+    background:maroon;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#output{
+    margin-top:20px;
+    color:gray;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 الموسيقى -->
+<audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- شاشة الترحيب -->
+<div id="welcome">
+    <h1>ولقد بنيت لك بين أضلعي منزلاً ♥️💍</h1>
+</div>
+
+<!-- العنوان -->
+<div class="header">Fared & Shrouk ♥️💍</div>
+
+<!-- الكروت -->
+<div class="container">
+
+<div class="card">
+    <div class="title">Katb Ketab</div>
+    <div class="date">25/6/2026</div>
+    <div class="place">Elryan Hall</div>
+</div>
+
+<div class="card">
+    <div class="title">Wedding Ceremony</div>
+    <div class="date">29/6/2026</div>
+    <div class="place">G-Marriott Hall</div>
+</div>
+
+</div>
+
+<!-- الرسائل -->
+<div class="message-box">
+
+<h2 style="color:maroon;">Leave a Message 💌</h2>
+
+<input type="text" id="name" placeholder="Your name">
+<br>
+<textarea id="message" placeholder="Your message"></textarea>
+<br>
+<button onclick="sendMessage()">Send</button>
+
+<div id="output"></div>
+
+</div>
+
+<script>
+
+/* شاشة البداية */
+setTimeout(()=>{
+    document.getElementById("welcome").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("welcome").style.display="none";
+    },1000);
+},5000);
+
+/* الموسيقى (حل منع التشغيل التلقائي) */
+window.addEventListener("click", function () {
+    document.getElementById("bgMusic").play();
+});
+
+/* تحميل الرسائل */
+function loadMessages(){
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    let output = "";
+
+    messages.forEach(m=>{
+        output += "<p><b>"+m.name+":</b> "+m.text+"</p>";
+    });
+
+    document.getElementById("output").innerHTML = output;
+}
+
+/* إرسال رسالة */
+function sendMessage(){
+
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+
+    if(name=="" || message==""){
+        alert("اكتب الاسم والرسالة");
+        return;
+    }
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+    messages.push({name:name, text:message});
+
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    document.getElementById("name").value="";
+    document.getElementById("message").value="";
+
+    loadMessages();
+}
+
+/* تحديث تلقائي */
+setInterval(loadMessages, 2000);
+
+/* أول تحميل */
+loadMessages();
+
+</script>
+
+</body>
+</html>

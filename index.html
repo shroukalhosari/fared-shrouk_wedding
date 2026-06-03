@@ -3,6 +3,8 @@
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Fared & Shrouk Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&family=Cairo:wght@300;600&display=swap" rel="stylesheet">
@@ -12,11 +14,12 @@
 body{
     margin:0;
     font-family:'Cairo', sans-serif;
-    background:linear-gradient(#fff0f5,#ffffff);
+    background:#fff0f5;
     text-align:center;
 }
 
-/* شاشة الترحيب */
+/* شاشة البداية */
+
 #welcome{
     position:fixed;
     top:0;
@@ -29,16 +32,18 @@ body{
     align-items:center;
     z-index:9999;
     padding:20px;
-    transition:opacity 1s ease;
 }
 
 #welcome h1{
     font-size:38px;
     color:maroon;
+    line-height:2;
     font-family:'El Messiri', sans-serif;
+    width:80%;
 }
 
 /* العنوان */
+
 .header{
     font-size:55px;
     color:maroon;
@@ -46,7 +51,41 @@ body{
     font-family:'El Messiri', sans-serif;
 }
 
+/* العداد */
+
+.count-container{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.box{
+    background:white;
+    width:120px;
+    height:120px;
+    border-radius:20px;
+    box-shadow:0 0 10px #ddd;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.number{
+    font-size:30px;
+    font-weight:bold;
+    color:maroon;
+}
+
+.label{
+    color:gray;
+    margin-top:5px;
+}
+
 /* الكروت */
+
 .container{
     display:flex;
     justify-content:center;
@@ -61,6 +100,11 @@ body{
     padding:20px;
     border-radius:20px;
     box-shadow:0 0 10px #ddd;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.05);
 }
 
 .title{
@@ -79,31 +123,101 @@ body{
     color:gray;
 }
 
-/* الرسائل */
-.message-box{
-    margin-top:60px;
-}
+/* الصورة */
 
-input, textarea{
-    padding:10px;
+img{
     width:300px;
-    margin:10px;
-    border-radius:10px;
-    border:1px solid #ccc;
+    margin-top:50px;
+    margin-bottom:40px;
+    border-radius:20px;
+    box-shadow:0 0 10px #ccc;
 }
 
-button{
-    padding:10px 20px;
-    background:maroon;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+/* قسم التعليقات */
+
+.comment-section {
+    max-width: 500px;
+    margin: 40px auto 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #ddd;
+    width: 85%;
+    box-sizing: border-box;
 }
 
-#output{
-    margin-top:20px;
-    color:gray;
+.comment-section h2 {
+    font-family: 'El Messiri', sans-serif;
+    color: maroon;
+    margin-bottom: 20px;
+    font-size: 26px;
+    margin-top: 0;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    text-align: right;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    border-color: maroon;
+}
+
+.comment-form button {
+    background: maroon;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: 0.3s;
+    width: 100%;
+    font-weight: bold;
+}
+
+.comment-form button:hover {
+    background: #5c0000;
+}
+
+.comments-display {
+    max-width: 500px;
+    margin: 0 auto 80px auto;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment-box {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #ddd;
+    text-align: right;
+}
+
+.comment-user {
+    font-weight: bold;
+    color: maroon;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #444;
+    font-size: 15px;
+    word-wrap: break-word;
 }
 
 </style>
@@ -111,106 +225,203 @@ button{
 
 <body>
 
-<!-- 🎵 الموسيقى -->
-<audio id="bgMusic" autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- شاشة الترحيب -->
 <div id="welcome">
-    <h1>ولقد بنيت لك بين أضلعي منزلاً ♥️💍</h1>
+
+    <h1>
+        ولقد بنيت لك بين أضلعي منزلاً عسى المقام بالمقيم يليق، فمرحباً بك أولاً وثانياً، عمراً وأخيراً ♥️💍
+    </h1>
+
 </div>
 
-<!-- العنوان -->
-<div class="header">Fared & Shrouk ♥️💍</div>
+<!-- الموسيقى -->
+<audio id="bg-music" src="music.mp3" loop></audio>
 
-<!-- الكروت -->
+<div class="header">
+    Fared & Shrouk ♥️💍
+</div>
+
+<div class="count-container">
+
+    <div class="box">
+        <div class="number" id="days">0</div>
+        <div class="label">Days</div>
+    </div>
+
+    <div class="box">
+        <div class="number" id="hours">0</div>
+        <div class="label">Hours</div>
+    </div>
+
+    <div class="box">
+        <div class="number" id="minutes">0</div>
+        <div class="label">Minutes</div>
+    </div>
+
+    <div class="box">
+        <div class="number" id="seconds">0</div>
+        <div class="label">Seconds</div>
+    </div>
+
+</div>
+
 <div class="container">
 
-<div class="card">
-    <div class="title">Katb Ketab</div>
-    <div class="date">25/6/2026</div>
-    <div class="place">Elryan Hall</div>
-</div>
+    <div class="card">
+        <div class="title">Katb Ketab</div>
+        <div class="date">25/6/2026</div>
+        <div class="place">Elryan Hall</div>
+    </div>
 
-<div class="card">
-    <div class="title">Wedding Ceremony</div>
-    <div class="date">29/6/2026</div>
-    <div class="place">G-Marriott Hall</div>
-</div>
-
-</div>
-
-<!-- الرسائل -->
-<div class="message-box">
-
-<h2 style="color:maroon;">Leave a Message 💌</h2>
-
-<input type="text" id="name" placeholder="Your name">
-<br>
-<textarea id="message" placeholder="Your message"></textarea>
-<br>
-<button onclick="sendMessage()">Send</button>
-
-<div id="output"></div>
+    <div class="card">
+        <div class="title">Wedding Ceremony</div>
+        <div class="date">29/6/2026</div>
+        <div class="place">G-Marriott Hall</div>
+    </div>
 
 </div>
+
+<img src="shrouk77.jpeg">
+
+<div class="comment-section">
+    <h2>A message with love ❤️</h2>
+
+    <div class="comment-form">
+
+        <input type="text" id="userName" placeholder="الاسم الأول..." required>
+
+        <textarea id="userComment" rows="3" placeholder="اكتب رسالتك أو مباركتك هنا..." required></textarea>
+
+        <button onclick="addComment()">إرسال الرسالة ✨</button>
+
+    </div>
+</div>
+
+<div class="comments-display" id="commentsDisplay"></div>
 
 <script>
 
-/* شاشة البداية */
-setTimeout(()=>{
-    document.getElementById("welcome").style.opacity="0";
-    setTimeout(()=>{
-        document.getElementById("welcome").style.display="none";
-    },1000);
-},5000);
+/* العد التنازلي */
 
-/* الموسيقى (حل منع التشغيل التلقائي) */
-window.addEventListener("click", function () {
-    document.getElementById("bgMusic").play();
-});
+var weddingDate = new Date("Jun 29, 2026 12:00:00").getTime();
 
-/* تحميل الرسائل */
-function loadMessages(){
-    let messages = JSON.parse(localStorage.getItem("messages")) || [];
-    let output = "";
+setInterval(function(){
 
-    messages.forEach(m=>{
-        output += "<p><b>"+m.name+":</b> "+m.text+"</p>";
-    });
+    var now = new Date().getTime();
 
-    document.getElementById("output").innerHTML = output;
-}
+    var distance = weddingDate - now;
 
-/* إرسال رسالة */
-function sendMessage(){
-
-    let name = document.getElementById("name").value;
-    let message = document.getElementById("message").value;
-
-    if(name=="" || message==""){
-        alert("اكتب الاسم والرسالة");
+    if (distance < 0) {
+        document.getElementById("days").innerHTML = 0;
+        document.getElementById("hours").innerHTML = 0;
+        document.getElementById("minutes").innerHTML = 0;
+        document.getElementById("seconds").innerHTML = 0;
         return;
     }
 
-    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    document.getElementById("days").innerHTML =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    messages.push({name:name, text:message});
+    document.getElementById("hours").innerHTML =
+    Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-    localStorage.setItem("messages", JSON.stringify(messages));
+    document.getElementById("minutes").innerHTML =
+    Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-    document.getElementById("name").value="";
-    document.getElementById("message").value="";
+    document.getElementById("seconds").innerHTML =
+    Math.floor((distance % (1000 * 60)) / 1000);
 
-    loadMessages();
+},1000);
+
+/* شاشة البداية */
+
+setTimeout(function(){
+
+document.getElementById("welcome").style.display = "none";
+
+},7000);
+
+/* تشغيل الموسيقى */
+
+var music = document.getElementById("bg-music");
+
+document.addEventListener('click', function () {
+    music.play();
+}, { once: true });
+
+/* تحميل التعليقات */
+
+window.onload = function() {
+    loadComments();
+};
+
+function addComment() {
+
+    var nameInput = document.getElementById("userName");
+    var commentInput = document.getElementById("userComment");
+
+    var name = nameInput.value.trim();
+    var comment = commentInput.value.trim();
+
+    if (name === "" || comment === "") {
+        alert("برجاء كتابة الاسم والرسالة أولاً 🤍");
+        return;
+    }
+
+    if (comment.length > 200) {
+        alert("الرسالة طويلة جدًا 🤍");
+        return;
+    }
+
+    var newComment = {
+        username: name,
+        text: comment
+    };
+
+    var commentsList = JSON.parse(localStorage.getItem("weddingComments")) || [];
+
+    commentsList.push(newComment);
+
+    localStorage.setItem("weddingComments", JSON.stringify(commentsList));
+
+    loadComments();
+
+    nameInput.value = "";
+    commentInput.value = "";
 }
 
-/* تحديث تلقائي */
-setInterval(loadMessages, 2000);
+function loadComments() {
 
-/* أول تحميل */
-loadMessages();
+    var commentsDisplay = document.getElementById("commentsDisplay");
+
+    commentsDisplay.innerHTML = "";
+
+    var commentsList = JSON.parse(localStorage.getItem("weddingComments")) || [];
+
+    for (var i = commentsList.length - 1; i >= 0; i--) {
+
+        var box = document.createElement("div");
+
+        box.className = "comment-box";
+
+        var userDiv = document.createElement("div");
+
+        userDiv.className = "comment-user";
+
+        userDiv.innerText = commentsList[i].username;
+
+        var textDiv = document.createElement("div");
+
+        textDiv.className = "comment-text";
+
+        textDiv.innerText = commentsList[i].text;
+
+        box.appendChild(userDiv);
+
+        box.appendChild(textDiv);
+
+        commentsDisplay.appendChild(box);
+    }
+}
 
 </script>
 

@@ -6,11 +6,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Fared & Shrouk Wedding</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&family=Cairo:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
+.fancy-name{
+    font-family:'Great Vibes', cursive;
+    font-size:75px;
+    background:linear-gradient(45deg,#8b0000,#d63384,#8b0000);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:glow 3s infinite ease-in-out;
+}
 
+@keyframes glow{
+    0%{
+        opacity:.7;
+        transform:translateY(-3px);
+    }
+    50%{
+        opacity:1;
+        transform:translateY(0);
+    }
+    100%{
+        opacity:.7;
+        transform:translateY(-3px);
+    }
+}
 body{
     margin:0;
     font-family:'Cairo', sans-serif;
@@ -19,7 +41,6 @@ body{
 }
 
 /* شاشة البداية */
-
 #welcome{
     position:fixed;
     top:0;
@@ -43,7 +64,6 @@ body{
 }
 
 /* العنوان */
-
 .header{
     font-size:55px;
     color:maroon;
@@ -52,7 +72,6 @@ body{
 }
 
 /* العداد */
-
 .count-container{
     display:flex;
     justify-content:center;
@@ -85,7 +104,6 @@ body{
 }
 
 /* الكروت */
-
 .container{
     display:flex;
     justify-content:center;
@@ -107,24 +125,7 @@ body{
     transform:scale(1.05);
 }
 
-.title{
-    color:maroon;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.date{
-    margin-top:10px;
-    font-size:18px;
-}
-
-.place{
-    margin-top:10px;
-    color:gray;
-}
-
 /* الصورة */
-
 img{
     width:300px;
     margin-top:50px;
@@ -133,8 +134,7 @@ img{
     box-shadow:0 0 10px #ccc;
 }
 
-/* قسم التعليقات */
-
+/* التعليقات */
 .comment-section {
     max-width: 500px;
     margin: 40px auto 30px auto;
@@ -143,15 +143,6 @@ img{
     border-radius: 20px;
     box-shadow: 0 0 10px #ddd;
     width: 85%;
-    box-sizing: border-box;
-}
-
-.comment-section h2 {
-    font-family: 'El Messiri', sans-serif;
-    color: maroon;
-    margin-bottom: 20px;
-    font-size: 26px;
-    margin-top: 0;
 }
 
 .comment-form input,
@@ -159,270 +150,194 @@ img{
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
     border-radius: 10px;
+    border: 1px solid #ddd;
     font-family: 'Cairo', sans-serif;
-    box-sizing: border-box;
-    outline: none;
-    text-align: right;
-}
-
-.comment-form input:focus,
-.comment-form textarea:focus {
-    border-color: maroon;
 }
 
 .comment-form button {
+    width: 100%;
+    padding: 12px;
     background: maroon;
     color: white;
     border: none;
-    padding: 12px 30px;
-    font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
-    font-family: 'Cairo', sans-serif;
-    transition: 0.3s;
-    width: 100%;
-    font-weight: bold;
-}
-
-.comment-form button:hover {
-    background: #5c0000;
 }
 
 .comments-display {
     max-width: 500px;
-    margin: 0 auto 80px auto;
+    margin: auto;
     width: 85%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
 .comment-box {
     background: white;
-    padding: 15px 20px;
+    padding: 15px;
+    margin-top: 10px;
     border-radius: 15px;
     box-shadow: 0 0 10px #ddd;
-    text-align: right;
+    text-align:right;
 }
 
 .comment-user {
-    font-weight: bold;
-    color: maroon;
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-weight:bold;
+    color:maroon;
 }
 
-.comment-text {
-    color: #444;
-    font-size: 15px;
-    word-wrap: break-word;
+.delete-btn {
+    margin-top:10px;
+    background:#7b1b3a;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 </style>
 </head>
 
 <body>
-
+<audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+<!-- شاشة البداية -->
 <div id="welcome">
-
     <h1>
         ولقد بنيت لك بين أضلعي منزلاً عسى المقام بالمقيم يليق، فمرحباً بك أولاً وثانياً، عمراً وأخيراً ♥️💍
     </h1>
-
 </div>
 
-<!-- الموسيقى -->
-<audio id="bg-music" src="music.mp3" loop></audio>
-
-<div class="header">
-    Fared & Shrouk ♥️💍
+<!-- الاسم -->
+<div class="header fancy-name">
+Fared & Shrouk
 </div>
 
+<div style="font-size:30px;color:maroon;margin-top:-10px;">
+♥️💍
+</div>
+
+<!-- العداد -->
 <div class="count-container">
-
-    <div class="box">
-        <div class="number" id="days">0</div>
-        <div class="label">Days</div>
-    </div>
-
-    <div class="box">
-        <div class="number" id="hours">0</div>
-        <div class="label">Hours</div>
-    </div>
-
-    <div class="box">
-        <div class="number" id="minutes">0</div>
-        <div class="label">Minutes</div>
-    </div>
-
-    <div class="box">
-        <div class="number" id="seconds">0</div>
-        <div class="label">Seconds</div>
-    </div>
-
+    <div class="box"><div class="number" id="days">0</div><div class="label">Days</div></div>
+    <div class="box"><div class="number" id="hours">0</div><div class="label">Hours</div></div>
+    <div class="box"><div class="number" id="minutes">0</div><div class="label">Minutes</div></div>
+    <div class="box"><div class="number" id="seconds">0</div><div class="label">Seconds</div></div>
 </div>
 
+<!-- الكروت -->
 <div class="container">
-
     <div class="card">
         <div class="title">Katb Ketab</div>
-        <div class="date">25/6/2026</div>
-        <div class="place">Elryan Hall</div>
+        <div>25/6/2026</div>
+        <div>Elryan Hall</div>
     </div>
 
     <div class="card">
-        <div class="title">Wedding Ceremony</div>
-        <div class="date">29/6/2026</div>
-        <div class="place">G-Marriott Hall</div>
+        <div class="title">Wedding</div>
+        <div>29/6/2026</div>
+        <div>G-Marriott Hall</div>
     </div>
-
 </div>
 
 <img src="shrouk77.jpeg">
 
+<!-- التعليقات -->
 <div class="comment-section">
     <h2>A message with love ❤️</h2>
 
-    <div class="comment-form">
-
-        <input type="text" id="userName" placeholder="الاسم الأول..." required>
-
-        <textarea id="userComment" rows="3" placeholder="اكتب رسالتك أو مباركتك هنا..." required></textarea>
-
-        <button onclick="addComment()">إرسال الرسالة ✨</button>
-
-    </div>
+    <input id="userName" placeholder="الاسم">
+    <textarea id="userComment" placeholder="رسالتك"></textarea>
+    <button onclick="addComment()">إرسال ✨</button>
 </div>
 
 <div class="comments-display" id="commentsDisplay"></div>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
 <script>
 
+/* Firebase */
+const firebaseConfig = {
+  apiKey: "AIzaSyAO1fqSBUIqIH-wg7ZiapUg9Qpd6q1Q4go",
+  authDomain: "wedding-site-68ad0.firebaseapp.com",
+  databaseURL: "https://wedding-site-68ad0-default-rtdb.firebaseio.com",
+  projectId: "wedding-site-68ad0",
+  storageBucket: "wedding-site-68ad0.firebasestorage.app",
+  messagingSenderId: "830568343559",
+  appId: "1:830568343559:web:5bd105f3b40b2b568122a2"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 /* العد التنازلي */
+let weddingDate = new Date("Jun 29, 2026 12:00:00").getTime();
 
-var weddingDate = new Date("Jun 29, 2026 12:00:00").getTime();
+setInterval(()=>{
+    let now = new Date().getTime();
+    let d = weddingDate - now;
 
-setInterval(function(){
-
-    var now = new Date().getTime();
-
-    var distance = weddingDate - now;
-
-    if (distance < 0) {
-        document.getElementById("days").innerHTML = 0;
-        document.getElementById("hours").innerHTML = 0;
-        document.getElementById("minutes").innerHTML = 0;
-        document.getElementById("seconds").innerHTML = 0;
-        return;
-    }
-
-    document.getElementById("days").innerHTML =
-    Math.floor(distance / (1000 * 60 * 60 * 24));
-
-    document.getElementById("hours").innerHTML =
-    Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-    document.getElementById("minutes").innerHTML =
-    Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    document.getElementById("seconds").innerHTML =
-    Math.floor((distance % (1000 * 60)) / 1000);
-
+    document.getElementById("days").innerHTML = Math.floor(d/86400000);
+    document.getElementById("hours").innerHTML = Math.floor((d%86400000)/3600000);
+    document.getElementById("minutes").innerHTML = Math.floor((d%3600000)/60000);
+    document.getElementById("seconds").innerHTML = Math.floor((d%60000)/1000);
 },1000);
 
 /* شاشة البداية */
+setTimeout(()=>{
+document.getElementById("welcome").style.display="none";
+},3000);
 
-setTimeout(function(){
+/* التعليقات */
+function addComment(){
+    let name = document.getElementById("userName").value;
+    let comment = document.getElementById("userComment").value;
 
-document.getElementById("welcome").style.display = "none";
+    if(!name || !comment) return;
 
-},7000);
+    db.ref("comments").push({
+        username:name,
+        text:comment
+    });
 
-/* تشغيل الموسيقى */
+    document.getElementById("userName").value="";
+    document.getElementById("userComment").value="";
+}
 
-var music = document.getElementById("bg-music");
+function deleteComment(id){
+    db.ref("comments/"+id).remove();
+}
 
-document.addEventListener('click', function () {
+function loadComments(){
+    db.ref("comments").on("value", snap=>{
+        let data = snap.val();
+        let box = document.getElementById("commentsDisplay");
+        box.innerHTML="";
+
+        for(let id in data){
+            box.innerHTML += `
+            <div class="comment-box">
+                <div class="comment-user">${data[id].username}</div>
+                <div>${data[id].text}</div>
+
+                <button class="delete-btn" onclick="deleteComment('${id}')">
+                    حذف 🗑️
+                </button>
+            </div>`;
+        }
+    });
+}
+
+window.onload = loadComments;
+const music = document.getElementById("bg-music");
+
+document.addEventListener("click", function(){
     music.play();
-}, { once: true });
-
-/* تحميل التعليقات */
-
-window.onload = function() {
-    loadComments();
-};
-
-function addComment() {
-
-    var nameInput = document.getElementById("userName");
-    var commentInput = document.getElementById("userComment");
-
-    var name = nameInput.value.trim();
-    var comment = commentInput.value.trim();
-
-    if (name === "" || comment === "") {
-        alert("برجاء كتابة الاسم والرسالة أولاً 🤍");
-        return;
-    }
-
-    if (comment.length > 200) {
-        alert("الرسالة طويلة جدًا 🤍");
-        return;
-    }
-
-    var newComment = {
-        username: name,
-        text: comment
-    };
-
-    var commentsList = JSON.parse(localStorage.getItem("weddingComments")) || [];
-
-    commentsList.push(newComment);
-
-    localStorage.setItem("weddingComments", JSON.stringify(commentsList));
-
-    loadComments();
-
-    nameInput.value = "";
-    commentInput.value = "";
-}
-
-function loadComments() {
-
-    var commentsDisplay = document.getElementById("commentsDisplay");
-
-    commentsDisplay.innerHTML = "";
-
-    var commentsList = JSON.parse(localStorage.getItem("weddingComments")) || [];
-
-    for (var i = commentsList.length - 1; i >= 0; i--) {
-
-        var box = document.createElement("div");
-
-        box.className = "comment-box";
-
-        var userDiv = document.createElement("div");
-
-        userDiv.className = "comment-user";
-
-        userDiv.innerText = commentsList[i].username;
-
-        var textDiv = document.createElement("div");
-
-        textDiv.className = "comment-text";
-
-        textDiv.innerText = commentsList[i].text;
-
-        box.appendChild(userDiv);
-
-        box.appendChild(textDiv);
-
-        commentsDisplay.appendChild(box);
-    }
-}
-
+}, { once:true });
 </script>
 
 </body>

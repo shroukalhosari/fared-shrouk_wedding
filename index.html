@@ -208,11 +208,21 @@ img{
     border-radius:8px;
     cursor:pointer;
 }
-
+.bg-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("shrouk77.jpeg") center/cover no-repeat;
+    opacity:0.15;
+    z-index:-1;
+}
 </style>
 </head>
 
 <body>
+    <div class="bg-overlay"></div>
 <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -261,9 +271,9 @@ Fared & Shrouk
 <div class="comment-section">
     <h2>A message with love ❤️</h2>
 
-    <input id="userName" placeholder="الاسم">
-    <textarea id="userComment" placeholder="رسالتك"></textarea>
-    <button onclick="addComment()">إرسال ✨</button>
+    <input id="userName" placeholder="الاسم"> <br> <br>
+    <textarea id="userComment" placeholder=" رسالتك او مباركتك هنا"></textarea> <br>
+    <button onclick="addComment()">إرسال ✨</button> <br>
 </div>
 
 <div class="comments-display" id="commentsDisplay"></div>
@@ -308,7 +318,7 @@ document.getElementById("welcome").style.display="none";
 
 /* التعليقات */
 function addComment(){
-    let name = document.getElementById("userName").value;
+    let name = document.getElementById("userName").value; 
     let comment = document.getElementById("userComment").value;
 
     if(!name || !comment) return;
@@ -323,7 +333,14 @@ function addComment(){
 }
 
 function deleteComment(id){
-    db.ref("comments/"+id).remove();
+    let password = prompt("اكتب كلمة السر لحذف التعليق:");
+
+    if(password === "1999"){
+        db.ref("comments/"+id).remove();
+        alert("تم الحذف ✅");
+    } else {
+        alert("كلمة السر غلط ❌");
+    }
 }
 
 function loadComments(){
